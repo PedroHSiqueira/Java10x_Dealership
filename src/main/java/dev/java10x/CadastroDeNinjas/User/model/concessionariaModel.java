@@ -1,20 +1,25 @@
 package dev.java10x.CadastroDeNinjas.User.model;
 
+import dev.java10x.CadastroDeNinjas.Car.model.CarroModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
-@Table(name = "tb_usuarios")
+@Table(name = "tb_concessionaria")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserModel {
+public class concessionariaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomes;
     private String email;
-    private int idade;
+
+    @OneToMany(mappedBy = "concessionaria") // uma concessionaria para varios carros | Mapeado pelo campo da outra tabela
+    private List<CarroModel> carros;
 }

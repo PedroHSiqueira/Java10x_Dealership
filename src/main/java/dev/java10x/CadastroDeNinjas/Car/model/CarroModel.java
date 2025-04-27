@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Car.model;
 
+import dev.java10x.CadastroDeNinjas.User.model.concessionariaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarModel {
+public class CarroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,4 +19,8 @@ public class CarModel {
     private String modelo;
     private String placa;
     private String cor;
+
+    @ManyToOne // Muitos carros para uma concessionaria
+    @JoinColumn(name = "concessionaria_id")
+    private concessionariaModel concessionaria;
 }
