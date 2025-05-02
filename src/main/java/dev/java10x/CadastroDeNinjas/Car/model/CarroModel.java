@@ -17,6 +17,7 @@ public class CarroModel {
     private Long id;
     private String marca;
     private String modelo;
+    @Column(unique = true)
     private String placa;
     private String cor;
 
