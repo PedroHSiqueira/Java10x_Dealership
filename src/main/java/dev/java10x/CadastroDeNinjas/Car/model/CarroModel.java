@@ -1,6 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Car.model;
 
-import dev.java10x.CadastroDeNinjas.User.model.concessionariaModel;
+import dev.java10x.CadastroDeNinjas.User.model.ConcessionariaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,5 +23,5 @@ public class CarroModel {
 
     @ManyToOne // Muitos carros para uma concessionaria
     @JoinColumn(name = "concessionaria_id")
-    private concessionariaModel concessionaria;
+    private ConcessionariaModel concessionaria;
 }
