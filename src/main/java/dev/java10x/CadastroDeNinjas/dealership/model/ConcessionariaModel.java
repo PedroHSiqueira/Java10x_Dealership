@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas.User.model;
+package dev.java10x.CadastroDeNinjas.dealership.model;
 
 import dev.java10x.CadastroDeNinjas.Car.model.CarroModel;
 import jakarta.persistence.*;
@@ -16,8 +16,11 @@ import java.util.List;
 public class ConcessionariaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    private String nomes;
+    @Column(name = "nome")
+    private String nome;
+    @Column(name = "email", unique = true)
     private String email;
 
     @OneToMany(mappedBy = "concessionaria") // uma concessionaria para varios carros | Mapeado pelo campo da outra tabela

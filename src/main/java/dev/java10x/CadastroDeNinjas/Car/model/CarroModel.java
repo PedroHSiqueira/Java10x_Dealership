@@ -1,6 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Car.model;
 
-import dev.java10x.CadastroDeNinjas.User.model.ConcessionariaModel;
+import dev.java10x.CadastroDeNinjas.dealership.model.ConcessionariaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +14,15 @@ import lombok.NoArgsConstructor;
 public class CarroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "marca")
     private String marca;
+    @Column(name = "modelo")
     private String modelo;
-    @Column(unique = true)
+    @Column(name = "placa", unique = true)
     private String placa;
+    @Column(name = "cor")
     private String cor;
 
     @ManyToOne // Muitos carros para uma concessionaria

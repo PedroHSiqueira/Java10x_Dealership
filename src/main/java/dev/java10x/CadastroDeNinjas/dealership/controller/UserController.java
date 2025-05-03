@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas.User.controller;
+package dev.java10x.CadastroDeNinjas.dealership.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
