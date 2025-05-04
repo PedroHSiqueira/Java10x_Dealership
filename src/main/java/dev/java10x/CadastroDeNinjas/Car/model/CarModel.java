@@ -8,24 +8,23 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tb_car")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarroModel {
+@Data
+public class CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
-    @Column(name = "marca")
-    private String marca;
+    private long id;
     @Column(name = "modelo")
     private String modelo;
-    @Column(name = "placa", unique = true)
+    @Column(name = "marca")
+    private String marca;
+    @Column(name = "placa")
     private String placa;
-    @Column(name = "cor")
-    private String cor;
 
-    @ManyToOne // Muitos carros para uma concessionaria
+    @ManyToOne
     @JoinColumn(name = "concessionaria_id")
     private ConcessionariaModel concessionaria;
+
 }

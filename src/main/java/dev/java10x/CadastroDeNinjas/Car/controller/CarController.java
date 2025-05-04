@@ -12,6 +12,6 @@ public class CarController {
 
     @GetMapping
     public ResponseEntity<String> getCar() {
-        return new ResponseEntity<>("Car", HttpStatus.OK);
-    }
+        return new ResponseEntity<>("Carros cadastrados", HttpStatus.OK);
+    };
 }

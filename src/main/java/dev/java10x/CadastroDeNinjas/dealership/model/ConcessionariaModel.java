@@ -1,6 +1,6 @@
 package dev.java10x.CadastroDeNinjas.dealership.model;
 
-import dev.java10x.CadastroDeNinjas.Car.model.CarroModel;
+import dev.java10x.CadastroDeNinjas.Car.model.CarModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +24,5 @@ public class ConcessionariaModel {
     private String email;
 
     @OneToMany(mappedBy = "concessionaria") // uma concessionaria para varios carros | Mapeado pelo campo da outra tabela
-    private List<CarroModel> carros;
+    private List<CarModel> carros;
 }
