@@ -1,6 +1,6 @@
 package dev.java10x.CadastroDeNinjas.dealership.model;
 
-import dev.java10x.CadastroDeNinjas.Car.model.CarModel;
+import dev.java10x.CadastroDeNinjas.car.model.CarModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

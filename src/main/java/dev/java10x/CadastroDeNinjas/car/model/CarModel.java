@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas.Car.model;
+package dev.java10x.CadastroDeNinjas.car.model;
 
 import dev.java10x.CadastroDeNinjas.dealership.model.ConcessionariaModel;
 import jakarta.persistence.*;
