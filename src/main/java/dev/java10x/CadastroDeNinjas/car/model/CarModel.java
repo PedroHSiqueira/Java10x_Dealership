@@ -1,6 +1,7 @@
 package dev.java10x.CadastroDeNinjas.car.model;
 
-import dev.java10x.CadastroDeNinjas.dealership.model.ConcessionariaModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.java10x.CadastroDeNinjas.dealership.model.DealershipModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class CarModel {
 
     @ManyToOne
     @JoinColumn(name = "concessionaria_id")
-    private ConcessionariaModel concessionaria;
+    @JsonIgnore
+    private DealershipModel concessionaria;
 
 }

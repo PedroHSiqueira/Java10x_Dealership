@@ -1,16 +1,26 @@
 package dev.java10x.CadastroDeNinjas.car.controller;
 
+import dev.java10x.CadastroDeNinjas.car.model.CarModel;
+import dev.java10x.CadastroDeNinjas.car.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/car")
 public class CarController {
 
+    private CarService carService;
+
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
+
     @GetMapping
-    public ResponseEntity<String> getCar() {
-        return new ResponseEntity<>("Carros cadastrados", HttpStatus.OK);
+    public List<CarModel> getCar() {
+        return carService.carLista();
     };
 
     @PostMapping("/")
