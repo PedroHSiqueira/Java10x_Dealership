@@ -15,7 +15,7 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public List<CarModel> carLista() {
+    public List<CarModel> listCars() {
         return carRepository.findAll();
     }
 }

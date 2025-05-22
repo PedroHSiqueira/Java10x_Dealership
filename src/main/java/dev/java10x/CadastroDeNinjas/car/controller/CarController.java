@@ -20,7 +20,7 @@ public class CarController {
 
     @GetMapping
     public List<CarModel> getCar() {
-        return carService.carLista();
+        return carService.listCars();
     };
 
     @PostMapping("/")

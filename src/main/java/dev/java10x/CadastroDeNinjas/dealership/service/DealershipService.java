@@ -15,7 +15,7 @@ public class DealershipService {
         this.dealershipRepository = dealershipRepository;
     }
 
-    public List<DealershipModel> listaConssionarias() {
+    public List<DealershipModel> listDealership() {
         return dealershipRepository.findAll();
     }
 }

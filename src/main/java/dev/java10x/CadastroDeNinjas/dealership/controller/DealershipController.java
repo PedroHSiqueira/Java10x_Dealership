@@ -20,7 +20,7 @@ public class DealershipController {
 
     @GetMapping("/")
     public List<DealershipModel> getDealership() {
-        return dealershipService.listaConssionarias();
+        return dealershipService.listDealership();
     }
 
     @PostMapping("/")
