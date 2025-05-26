@@ -18,9 +18,14 @@ public class DealershipController {
         this.dealershipService = dealershipService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/listar")
     public List<DealershipModel> getDealership() {
         return dealershipService.listDealership();
+    }
+
+    @GetMapping("/listar/{id}")
+    public DealershipModel getDealershipById(@PathVariable Long id) {
+        return dealershipService.getDealershipById(id);
     }
 
     @PostMapping("/")

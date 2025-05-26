@@ -5,6 +5,7 @@ import dev.java10x.CadastroDeNinjas.dealership.repository.DealershipRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DealershipService {
@@ -17,5 +18,10 @@ public class DealershipService {
 
     public List<DealershipModel> listDealership() {
         return dealershipRepository.findAll();
+    }
+
+    public DealershipModel getDealershipById(Long id) {
+        Optional<DealershipModel> dealershipById = dealershipRepository.findById(id);
+        return dealershipById.orElse(null);
     }
 }
