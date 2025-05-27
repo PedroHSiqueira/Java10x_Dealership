@@ -24,4 +24,8 @@ public class DealershipService {
         Optional<DealershipModel> dealershipById = dealershipRepository.findById(id);
         return dealershipById.orElse(null);
     }
+
+    public DealershipModel createDealership(DealershipModel dealershipModel) {
+        return dealershipRepository.save(dealershipModel);
+    }
 }

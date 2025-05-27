@@ -18,15 +18,20 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<CarModel> getCar() {
         return carService.listCars();
     };
 
-    @PostMapping("/")
-    public ResponseEntity<String> postCar() {
-        return new ResponseEntity<>("Carro Criado", HttpStatus.OK);
-    };
+    @GetMapping("/listar/{id}")
+    public CarModel getCarById(@PathVariable Long id) {
+        return carService.getCarById(id);
+    }
+
+    @PostMapping("/criar")
+    public CarModel createCar(@RequestBody CarModel carModel) {
+        return carService.createCar(carModel);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateCar(@PathVariable String id) {

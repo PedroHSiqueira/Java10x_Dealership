@@ -28,11 +28,10 @@ public class DealershipController {
         return dealershipService.getDealershipById(id);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<String>postDealership() {
-        return new ResponseEntity<>("Dealership", HttpStatus.OK);
+    @PostMapping("/criar")
+    public DealershipModel createDealership(@RequestBody DealershipModel dealershipModel) {
+        return dealershipService.createDealership(dealershipModel);
     }
-
     @PutMapping("/{id}")
     public ResponseEntity<String> updateDealership(@PathVariable String id) {
         return new ResponseEntity<>("Dealership atualizado" + id, HttpStatus.OK);
