@@ -29,4 +29,11 @@ public class CarService {
     public CarModel createCar(CarModel carModel) {
         return carRepository.save(carModel);
     }
+
+    public void deleteCarbyId(Long id){
+        Optional<CarModel> carById = carRepository.findById(id);
+        if (carById.isPresent()) {
+            carRepository.deleteById(id);
+        }
+    }
 }

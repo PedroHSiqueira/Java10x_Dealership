@@ -32,13 +32,14 @@ public class DealershipController {
     public DealershipModel createDealership(@RequestBody DealershipModel dealershipModel) {
         return dealershipService.createDealership(dealershipModel);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<String> updateDealership(@PathVariable String id) {
         return new ResponseEntity<>("Dealership atualizado" + id, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteDealership(@PathVariable String id) {
-        return new ResponseEntity<>("Dealership deletado" + id, HttpStatus.OK);
+    @DeleteMapping("/deletar/{id}")
+    public void deleteDealeship(@PathVariable Long id) {
+        dealershipService.deleteDealershipById(id);
     }
 }

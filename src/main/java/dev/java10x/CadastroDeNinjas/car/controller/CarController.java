@@ -38,8 +38,8 @@ public class CarController {
         return new ResponseEntity<>("Carros atualizado" + id, HttpStatus.OK);
     };
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCar(@PathVariable String id) {
-        return new ResponseEntity<>("Carros Deletado" + id, HttpStatus.OK);
+    @DeleteMapping("/deletar/{id}")
+    public void deleteCar(@PathVariable Long id) {
+        carService.deleteCarbyId(id);
     };
 }

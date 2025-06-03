@@ -28,4 +28,11 @@ public class DealershipService {
     public DealershipModel createDealership(DealershipModel dealershipModel) {
         return dealershipRepository.save(dealershipModel);
     }
+
+    public void deleteDealershipById(Long id) {
+        Optional<DealershipModel> dealershipById = dealershipRepository.findById(id);
+        if (dealershipById.isPresent()) {
+            dealershipRepository.delete(dealershipById.get());
+        }
+    }
 }
