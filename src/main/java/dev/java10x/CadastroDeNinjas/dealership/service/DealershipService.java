@@ -35,4 +35,12 @@ public class DealershipService {
             dealershipRepository.delete(dealershipById.get());
         }
     }
+
+    public DealershipModel updateDealership(Long id, DealershipModel dealershipModel) {
+        if (dealershipRepository.existsById(id)){
+            dealershipModel.setId(id);
+            return dealershipRepository.save(dealershipModel);
+        }
+        return null;
+    }
 }

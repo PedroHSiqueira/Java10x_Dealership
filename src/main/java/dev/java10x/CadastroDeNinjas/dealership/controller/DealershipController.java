@@ -33,9 +33,9 @@ public class DealershipController {
         return dealershipService.createDealership(dealershipModel);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateDealership(@PathVariable String id) {
-        return new ResponseEntity<>("Dealership atualizado" + id, HttpStatus.OK);
+    @PutMapping("/atualizar/{id}")
+    public DealershipModel updateDealership(@PathVariable Long id, @RequestBody DealershipModel dealershipModelAtualizado) {
+        return dealershipService.updateDealership(id, dealershipModelAtualizado);
     }
 
     @DeleteMapping("/deletar/{id}")
