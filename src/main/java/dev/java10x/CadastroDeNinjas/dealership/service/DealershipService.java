@@ -1,5 +1,7 @@
 package dev.java10x.CadastroDeNinjas.dealership.service;
 
+import dev.java10x.CadastroDeNinjas.dealership.DTO.DealershipDTO;
+import dev.java10x.CadastroDeNinjas.dealership.Mapper.DealershipMapper;
 import dev.java10x.CadastroDeNinjas.dealership.model.DealershipModel;
 import dev.java10x.CadastroDeNinjas.dealership.repository.DealershipRepository;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import java.util.Optional;
 @Service
 public class DealershipService {
 
-    private DealershipRepository dealershipRepository;
+    private final DealershipRepository dealershipRepository;
+    private final DealershipMapper dealershipMapper;
 
     public DealershipService(DealershipRepository dealershipRepository) {
         this.dealershipRepository = dealershipRepository;
+        this.dealershipMapper = new DealershipMapper();
     }
 
     public List<DealershipModel> listDealership() {
@@ -25,8 +29,10 @@ public class DealershipService {
         return dealershipById.orElse(null);
     }
 
-    public DealershipModel createDealership(DealershipModel dealershipModel) {
-        return dealershipRepository.save(dealershipModel);
+    public DealershipDTO createDealership(DealershipDTO dealershipDTO) {
+        DealershipModel dealershipModel = dealershipMapper.map(dealershipDTO);
+        DealershipModel dealership = dealershipRepository.save(dealershipModel);
+        return dealershipMapper.map(dealership);
     }
 
     public void deleteDealershipById(Long id) {
