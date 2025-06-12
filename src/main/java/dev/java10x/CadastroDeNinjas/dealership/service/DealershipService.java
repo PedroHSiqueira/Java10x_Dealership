@@ -24,9 +24,10 @@ public class DealershipService {
         return dealershipRepository.findAll();
     }
 
-    public DealershipModel getDealershipById(Long id) {
+    public DealershipDTO getDealershipById(Long id) {
         Optional<DealershipModel> dealershipById = dealershipRepository.findById(id);
-        return dealershipById.orElse(null);
+        DealershipModel dealership = dealershipById.orElse(null);
+        return dealership != null ? dealershipMapper.map(dealership) : null;
     }
 
     public DealershipDTO createDealership(DealershipDTO dealershipDTO) {
@@ -43,7 +44,7 @@ public class DealershipService {
     }
 
     public DealershipModel updateDealership(Long id, DealershipModel dealershipModel) {
-        if (dealershipRepository.existsById(id)){
+        if (dealershipRepository.existsById(id)) {
             dealershipModel.setId(id);
             return dealershipRepository.save(dealershipModel);
         }

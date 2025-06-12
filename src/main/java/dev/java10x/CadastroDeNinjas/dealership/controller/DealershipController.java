@@ -25,7 +25,7 @@ public class DealershipController {
     }
 
     @GetMapping("/listar/{id}")
-    public DealershipModel getDealershipById(@PathVariable Long id) {
+    public DealershipDTO getDealershipById(@PathVariable Long id) {
         return dealershipService.getDealershipById(id);
     }
 
