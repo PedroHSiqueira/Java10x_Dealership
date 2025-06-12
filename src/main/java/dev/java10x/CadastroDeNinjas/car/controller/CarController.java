@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.car.controller;
 
+import dev.java10x.CadastroDeNinjas.car.DTO.CarDTO;
 import dev.java10x.CadastroDeNinjas.car.model.CarModel;
 import dev.java10x.CadastroDeNinjas.car.service.CarService;
 import org.springframework.http.HttpStatus;
@@ -24,13 +25,13 @@ public class CarController {
     };
 
     @GetMapping("/listar/{id}")
-    public CarModel getCarById(@PathVariable Long id) {
+    public CarDTO getCarById(@PathVariable Long id) {
         return carService.getCarById(id);
     }
 
     @PostMapping("/criar")
-    public CarModel createCar(@RequestBody CarModel carModel) {
-        return carService.createCar(carModel);
+    public CarDTO createCar(@RequestBody CarDTO carDTO) {
+        return carService.createCar(carDTO);
     }
 
     @PutMapping("/{id}")

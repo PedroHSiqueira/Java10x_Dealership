@@ -1,9 +1,10 @@
 package dev.java10x.CadastroDeNinjas.car.service;
 
+import dev.java10x.CadastroDeNinjas.car.DTO.CarDTO;
+import dev.java10x.CadastroDeNinjas.car.Mapper.CarMapper;
 import dev.java10x.CadastroDeNinjas.car.model.CarModel;
 import dev.java10x.CadastroDeNinjas.car.repository.CarRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,23 +12,28 @@ import java.util.Optional;
 @Service
 public class CarService {
 
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
+    private final CarMapper carMapper;
 
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
+        this.carMapper = new CarMapper();
     }
 
     public List<CarModel> listCars() {
         return carRepository.findAll();
     }
 
-    public CarModel getCarById(Long id) {
+    public CarDTO getCarById(Long id) {
         Optional<CarModel> carById = carRepository.findById(id);
-        return carById.orElse(null);
+        CarModel car = carById.orElse(null);
+        return car != null ? carMapper.map(car) : null;
     }
 
-    public CarModel createCar(CarModel carModel) {
-        return carRepository.save(carModel);
+    public CarDTO createCar(CarDTO carDTO) {
+        CarModel carModel = carMapper.map(carDTO);
+        carModel = carRepository.save(carModel);
+        return carMapper.map(carModel);
     }
 
     public void deleteCarbyId(Long id){
