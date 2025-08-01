@@ -3,8 +3,6 @@ package dev.java10x.CadastroDeNinjas.dealership.controller;
 import dev.java10x.CadastroDeNinjas.dealership.DTO.DealershipDTO;
 import dev.java10x.CadastroDeNinjas.dealership.model.DealershipModel;
 import dev.java10x.CadastroDeNinjas.dealership.service.DealershipService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
