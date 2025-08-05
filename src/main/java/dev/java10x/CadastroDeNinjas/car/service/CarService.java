@@ -4,6 +4,7 @@ import dev.java10x.CadastroDeNinjas.car.DTO.CarDTO;
 import dev.java10x.CadastroDeNinjas.car.Mapper.CarMapper;
 import dev.java10x.CadastroDeNinjas.car.model.CarModel;
 import dev.java10x.CadastroDeNinjas.car.repository.CarRepository;
+import dev.java10x.CadastroDeNinjas.dealership.model.DealershipModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +35,14 @@ public class CarService {
         CarModel carModel = carMapper.map(carDTO);
         carModel = carRepository.save(carModel);
         return carMapper.map(carModel);
+    }
+
+    public CarModel updateCar(Long id, CarDTO carModel) {
+        if (carRepository.existsById(id)) {
+            carModel.setId(id);
+            return carRepository.save(carMapper.map(carModel));
+        }
+        return null;
     }
 
     public void deleteCarbyId(Long id){

@@ -3,6 +3,8 @@ package dev.java10x.CadastroDeNinjas.dealership.controller;
 import dev.java10x.CadastroDeNinjas.dealership.DTO.DealershipDTO;
 import dev.java10x.CadastroDeNinjas.dealership.model.DealershipModel;
 import dev.java10x.CadastroDeNinjas.dealership.service.DealershipService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,17 +30,27 @@ public class DealershipController {
     }
 
     @PostMapping("/criar")
-    public DealershipDTO createDealership(@RequestBody DealershipDTO dealershipModel) {
-        return dealershipService.createDealership(dealershipModel);
+    public ResponseEntity<String> createDealership(@RequestBody DealershipDTO dealershipModel) {
+        dealershipService.createDealership(dealershipModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body("A concessionaria foi adicionada com sucesso!");
     }
 
     @PutMapping("/atualizar/{id}")
-    public DealershipModel updateDealership(@PathVariable Long id, @RequestBody DealershipModel dealershipModelAtualizado) {
-        return dealershipService.updateDealership(id, dealershipModelAtualizado);
+    public ResponseEntity<String> updateDealership(@PathVariable Long id, @RequestBody DealershipModel dealershipModelAtualizado) {
+        if (dealershipService.getDealershipById(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item não encontrado!");
+        }
+
+        dealershipService.updateDealership(id, dealershipModelAtualizado);
+        return ResponseEntity.status(HttpStatus.OK).body("Item atualizado com sucesso!");
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deleteDealeship(@PathVariable Long id) {
+    public ResponseEntity<String> deleteDealeship(@PathVariable Long id) {
+        if (dealershipService.getDealershipById(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item não encontrado!");
+        }
         dealershipService.deleteDealershipById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Item deletado com sucesso!");
     }
 }

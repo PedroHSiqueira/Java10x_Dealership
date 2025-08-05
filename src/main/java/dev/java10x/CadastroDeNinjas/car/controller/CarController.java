@@ -30,17 +30,27 @@ public class CarController {
     }
 
     @PostMapping("/criar")
-    public CarDTO createCar(@RequestBody CarDTO carDTO) {
-        return carService.createCar(carDTO);
+    public ResponseEntity<String> createCar(@RequestBody CarDTO carDTO) {
+        carService.createCar(carDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("O item foi criado com sucesso");
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateCar(@PathVariable String id) {
-        return new ResponseEntity<>("Carros atualizado" + id, HttpStatus.OK);
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<String> updateCar(@PathVariable Long id, @RequestBody CarDTO carDTO) {
+        if (carService.getCarById(id) == null){
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("o item não encontrado!");
+        }
+
+        carService.updateCar(id, carDTO);
+        return  ResponseEntity.status(HttpStatus.OK).body("Item atualizado com sucesso!");
     };
 
     @DeleteMapping("/deletar/{id}")
-    public void deleteCar(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCar(@PathVariable Long id) {
+        if (carService.getCarById(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O item não foi encontrado");
+        }
         carService.deleteCarbyId(id);
+        return ResponseEntity.status(HttpStatus.OK).body("O item foi deletado com sucesso");
     };
 }
