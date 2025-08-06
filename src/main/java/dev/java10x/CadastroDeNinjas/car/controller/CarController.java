@@ -13,20 +13,23 @@ import java.util.List;
 @RequestMapping("/car")
 public class CarController {
 
-    private CarService carService;
+    private final CarService carService;
 
     public CarController(CarService carService) {
         this.carService = carService;
     }
 
     @GetMapping("/listar")
-    public List<CarModel> getCar() {
-        return carService.listCars();
+    public ResponseEntity<List<CarModel>> getCar() {
+        return ResponseEntity.ok(carService.listCars());
     };
 
     @GetMapping("/listar/{id}")
-    public CarDTO getCarById(@PathVariable Long id) {
-        return carService.getCarById(id);
+    public ResponseEntity<?> getCarById(@PathVariable Long id) {
+        if (carService.getCarById(id) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item não foi encontrado!");
+        }
+        return ResponseEntity.ok(carService.getCarById(id));
     }
 
     @PostMapping("/criar")
@@ -38,11 +41,11 @@ public class CarController {
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<String> updateCar(@PathVariable Long id, @RequestBody CarDTO carDTO) {
         if (carService.getCarById(id) == null){
-            return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("o item não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("o item não encontrado!");
         }
 
         carService.updateCar(id, carDTO);
-        return  ResponseEntity.status(HttpStatus.OK).body("Item atualizado com sucesso!");
+        return ResponseEntity.status(HttpStatus.OK).body("Item atualizado com sucesso!");
     };
 
     @DeleteMapping("/deletar/{id}")
